@@ -1,3 +1,3 @@
-module github.com/adityatelange/hugo-PaperMod
+module github.com/wordswords/PaperMod-dpc
 
 go 1.12
