@@ -40,12 +40,11 @@ features = [
 min_version = "0.112.4"
 
 [author]
-  name = "Aditya Telange"
-  homepage = "https://github.com/adityatelange/"
+  name = "David Craddock"
+  homepage = "https://github.com/wordswords/"
 
 # If porting an existing theme
 [original]
-  name = "Paper"
-  author = "nanxiaobei"
-  homepage = "https://github.com/nanxiaobei"
-  repo = "https://github.com/nanxiaobei/hugo-paper/"
+  name = "PaperMod"
+  author = "Aditya Telange"
+  homepage = "https://github.com/adityatelange/"
