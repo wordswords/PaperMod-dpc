@@ -1,0 +1,96 @@
+<meta property="og:title" content="{{ .Title }}">
+<meta property="og:description" content="
+{{ with .Description }}
+    {{ . }}
+{{ else }}
+    {{if .IsPage}}
+        {{ .Summary }}
+    {{ else }}
+        {{ with .Site.Params.description }}
+            {{ . }} 
+        {{ end }}
+    {{ end }}
+{{ end }}">
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+{{ $href := .Permalink }}
+{{ if and (.IsNode) (.Paginator) }}
+    {{ with $.Paginator }}
+      {{ if gt .PageNumber 1 }}
+          {{ $href = .URL | absURL }}
+            <meta property="og:url" content="{{ $href }}">
+      {{ end }}
+    {{ end }}
+{{ end }}
+
+{{- with .Site.Params.title }}<meta property="og:site_name" content="{{ . }}" />{{ end }}
+<meta property="og:locale" content="{{ .Site.LanguageCode }}">
+
+<meta property="og:image" content="
+{{ if isset .Params "image" }} {{/* if there is a featured image set for the post, use it */}}
+  {{ .Permalink }}{{ .Params.image }}
+{{ else }} {{/* otherwise pick the first matching one on the page */}}
+  {{ with .Resources.GetMatch "*.png" }}
+      {{ .Permalink | absURL }}
+  {{ else }}
+      {{ with .Resources.GetMatch "*.jpg" }}
+            {{ .Permalink | absURL }}
+      {{ else }}
+          {{ with .Resources.GetMatch "*.jpeg" }}
+                {{ .Permalink | absURL }}
+          {{ else }}
+                {{ with .Resources.GetMatch "*.gif" }}
+                  {{ .Permalink | absURL }}
+                 {{ else }}
+                    {{/* no images found on post! Return the default site image as the OG image */}}
+                      {{ index .Site.Params.images 0 | absURL }}
+                {{ end }}
+          {{ end }}
+      {{ end }}
+   {{ end }}
+{{ end }}
+">
+
+
+{{- $iso8601 := "2006-01-02T15:04:05-07:00" -}}
+
+{{- if .IsPage }}
+
+    {{- if not .PublishDate.IsZero }}<meta property="article:published_time" {{ .PublishDate.Format $iso8601 | printf "content=%q" | safeHTMLAttr }}>
+    {{ else if not .Date.IsZero }}<meta property="article:published_time" {{ .Date.Format $iso8601 | printf "content=%q" | safeHTMLAttr }}>
+    {{ end }}
+
+    {{- if not .Lastmod.IsZero }}<meta property="article:modified_time" {{ .Lastmod.Format $iso8601 | printf "content=%q" | safeHTMLAttr }}>
+    <meta property="og:updated_time" {{ .Lastmod.Format $iso8601 | printf "content=%q" | safeHTMLAttr }}>{{ else }}<meta property="og:updated_time" {{ .Date.Format $iso8601 | printf "content=%q" | safeHTMLAttr }}>
+    {{- end }}
+
+{{- end }}{{/* .IsPage */}}
+
+{{- with .Params.audio }}<meta property="og:audio" content="{{ . }}">{{ end }}
+{{- with .Site.Params.title }}<meta property="og:site_name" content="{{ . }}">{{ end }}
+{{- with .Params.videos }}
+    {{- range . }}
+    <meta property="og:video" content="{{ . | absURL }}">
+    {{ end }}
+{{ end }}
+
+{{- /* If it is part of a series, link to related articles */}}
+{{- $permalink := .Permalink }}
+{{- $siteSeries := .Site.Taxonomies.series }}{{ with .Params.series }}
+{{- range $name := . }}
+  {{- $series := index $siteSeries ($name | urlize) }}
+  {{- range $page := first 6 $series.Pages }}
+    {{- if ne $page.Permalink $permalink }}<meta property="og:see_also" content="{{ $page.Permalink }}">{{ end }}
+  {{- end }}
+{{ end }}{{ end }}
+{{- if .IsPage }}
+{{ with .Site.Author.facebook }}<meta property="article:author" content="https://www.facebook.com/{{ . }}">{{ end }}
+{{ with .Site.Params.Social.facebook }}<meta property="article:publisher" content="https://www.facebook.com/{{ . }}">{{ end }}
+{{ with .GetTerms "categories"}}{{ range first 1 . }}<meta property="article:section" content="{{ .LinkTitle | lower  }}">
+{{ end }}{{ end }}
+{{- with .GetTerms "tags" }}{{ range . }}<meta property="article:tag" content="{{ .LinkTitle | lower  }}">
+{{ end }}{{ end }}
+{{ end }}
+{{- /* Facebook Page Admin ID for Domain Insights */}}
+
+
+
