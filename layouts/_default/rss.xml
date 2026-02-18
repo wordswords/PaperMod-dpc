@@ -1,6 +1,5 @@
-{{- /* Deprecate site.Author.email in favor of site.Params.author.email */}}
 {{- $authorEmail := "" }}
-{{- with site.Params.author }}
+{{- with site.params.author.name }}
   {{- if reflect.IsMap . }}
     {{- with .email }}
       {{- $authorEmail = . }}
@@ -13,9 +12,8 @@
   {{- end }}
 {{- end }}
 
-{{- /* Deprecate site.Author.name in favor of site.Params.author.name */}}
 {{- $authorName := "" }}
-{{- with site.Params.author }}
+{{- with site.params.author.name }}
   {{- if reflect.IsMap . }}
     {{- with .name }}
       {{- $authorName = . }}
@@ -24,7 +22,7 @@
     {{- $authorName  = . }}
   {{- end }}
 {{- else }}
-  {{- with site.Author.name }}
+  {{- with site.params.author.name }}
     {{- $authorName = . }}
     {{- warnf "The author key in site configuration is deprecated. Use params.author.name instead." }}
   {{- end }}
