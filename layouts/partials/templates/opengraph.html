@@ -83,7 +83,7 @@
   {{- end }}
 {{ end }}{{ end }}
 {{- if .IsPage }}
-{{ with .Site.Author.facebook }}<meta property="article:author" content="https://www.facebook.com/{{ . }}">{{ end }}
+{{ with .Site.Params.Social.facebook }}<meta property="article:author" content="https://www.facebook.com/{{ . }}">{{ end }}
 {{ with .Site.Params.Social.facebook }}<meta property="article:publisher" content="https://www.facebook.com/{{ . }}">{{ end }}
 {{ with .GetTerms "categories"}}{{ range first 1 . }}<meta property="article:section" content="{{ .LinkTitle | lower  }}">
 {{ end }}{{ end }}
