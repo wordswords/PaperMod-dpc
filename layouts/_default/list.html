@@ -45,6 +45,7 @@
 {{- $pages = where $pages "Params.hiddenInHomeList" "!=" "true"  }}
 {{- end }}
 
+{{- $pages := where site.RegularPages "Type" "posts" }}
 {{- $paginator := .Paginate $pages }}
 
 {{- if and .IsHome site.Params.homeInfoParams (eq $paginator.PageNumber 1) }}
@@ -52,7 +53,7 @@
 {{- end }}
 
 {{- $term := .Data.Term }}
-{{- range $index, $page := where $paginator.Pages "Type" "post" }} }}
+{{- range $index, $page := $paginator.Pages }}
 
 {{- $class := "post-entry" }}
 
