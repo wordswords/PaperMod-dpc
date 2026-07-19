@@ -18,9 +18,6 @@
 {{- end -}}
 " id="top">
     {{- partialCached "header.html" . .Page -}}
-    {{- if .IsHome }}
-        {{- partial "goodreads.html" . --}
-    {{- end }}
     <main class="main">
         {{- block "main" . }}{{ end }}
     </main>
