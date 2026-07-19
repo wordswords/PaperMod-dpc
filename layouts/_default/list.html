@@ -52,6 +52,10 @@
 {{- partial "home_info.html" . }}
 {{- end }}
 
+{{- if .IsHome }}
+{{- partial "goodreads.html" . }}
+{{- end }}
+
 {{- $term := .Data.Term }}
 {{- range $index, $page := $paginator.Pages }}
 
