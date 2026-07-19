@@ -55,7 +55,7 @@ body:not(.dark) #sun {
     word-break: keep-all;
     overflow-x: auto;
     white-space: nowrap;
-    font-size: 14px;
+    font-size: 12px;
 }
 
 #menu li + li {
@@ -63,7 +63,7 @@ body:not(.dark) #sun {
 }
 
 #menu a {
-    font-size: 14px;
+    font-size: 12px;
 }
 
 #menu .active {
