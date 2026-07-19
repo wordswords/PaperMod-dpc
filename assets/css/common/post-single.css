@@ -29,7 +29,7 @@
 }
 
 .breadcrumbs a {
-    font-size: 16px;
+    font-size: 12px;
 }
 
 .post-content {
@@ -58,7 +58,7 @@
 }
 
 .post-content h4 {
-    font-size: 16px;
+    font-size: 12px;
 }
 
 .post-content h5 {
@@ -241,7 +241,7 @@
 
 .post-content figure > figcaption {
     color: var(--primary);
-    font-size: 16px;
+    font-size: 12px;
     font-weight: bold;
     margin: 8px 0 16px;
 }
