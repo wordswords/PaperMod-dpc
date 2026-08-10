@@ -6,6 +6,20 @@
     padding: var(--gap);
 }
 
+.skip-link {
+    position: absolute;
+    left: -999px;
+    top: 0;
+    z-index: 999;
+    padding: 10px;
+    background: var(--primary);
+    color: var(--theme);
+}
+
+.skip-link:focus {
+    left: 0;
+}
+
 .page-header h1 {
     font-size: 20px;
 }

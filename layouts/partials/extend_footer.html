@@ -1,3 +1,30 @@
 {{- /* Footer custom content area start */ -}}
-{{- /*     Insert any custom code web-analytics, resources, etc. here */ -}}
+<span id="git-hashes"></span>
+<script>
+    const gitHashesElement = document.getElementById('git-hashes');
+    if (gitHashesElement) {
+        fetch('/git_hashes.json')
+            .then(response => {
+                if (!response.ok) throw new Error('Failed to fetch git hashes');
+                return response.json();
+            })
+            .then(data => {
+                const theme = data.theme;
+                const site = data.site;
+                const parts = [];
+                if (theme && theme.commit) {
+                    parts.push('Theme: ' + theme.commit + (theme.tag ? ' (' + theme.tag + ')' : ''));
+                }
+                if (site && site.commit) {
+                    parts.push('Site: ' + site.commit + (site.tag ? ' (' + site.tag + ')' : ''));
+                }
+                if (parts.length > 0) {
+                    gitHashesElement.textContent = ' · ' + parts.join(' · ');
+                }
+            })
+            .catch(() => {
+                gitHashesElement.textContent = ' · Hashes not found.';
+            });
+    }
+</script>
 {{- /* Footer custom content area end */ -}}

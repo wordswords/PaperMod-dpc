@@ -3,7 +3,7 @@
 {{- end -}}
 
 <!DOCTYPE html>
-<html lang="{{ site.Language }}" dir="{{ .Language.LanguageDirection | default "auto" }}">
+<html lang="{{ site.Language.Lang }}" dir="{{ .Language.LanguageDirection | default "auto" }}">
 
 <head>
     {{- partial "head.html" . }}
@@ -17,8 +17,9 @@
 {{- print " dark" }}
 {{- end -}}
 " id="top">
+    <a class="skip-link" href="#content">Skip to main content</a>
     {{- partialCached "header.html" . .Page -}}
-    <main class="main">
+    <main class="main" id="content">
         {{- block "main" . }}{{ end }}
     </main>
     {{ partialCached "footer.html" . .Layout .Kind (.Param "hideFooter") (.Param "ShowCodeCopyButtons") -}}

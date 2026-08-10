@@ -116,3 +116,11 @@ img {
     display: block;
     max-width: 100%;
 }
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+[tabindex]:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
