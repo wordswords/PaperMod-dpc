@@ -12,7 +12,7 @@ THEME_ROOT="$(dirname "$SCRIPT_DIR")"
 SITE_ROOT="$THEME_ROOT/../.."
 # Output file path: site root is two levels above this repository root,
 # so the data directory is ../../data/git_hashes.json from this repo root.
-OUTPUT_FILE="$SITE_ROOT/data/git_hashes.json"
+OUTPUT_FILE="$SITE_ROOT/static/git_hashes.json"
 
 # Ensure the data directory exists
 mkdir -p "$(dirname "$OUTPUT_FILE")"
