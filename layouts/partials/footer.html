@@ -23,13 +23,15 @@
     </span>
 
     {{- $gitHashesPath := "data/git_hashes.json" }}
-    {{- with readFile $gitHashesPath }}
-        {{- $gitHashes := . | unmarshal }}
-        {{- with $gitHashes }}
-            {{- $commit := .commit | default "" }}
-            {{- $tag := .tag | default "" }}
-            {{- if $commit }}
-                <span> · Git: {{ $commit }}{{ if $tag }} ({{ $tag }}){{ end }}</span>
+    {{- if (fileExists $gitHashesPath) }}
+        {{- with readFile $gitHashesPath }}
+            {{- $gitHashes := . | unmarshal }}
+            {{- with $gitHashes }}
+                {{- $commit := .commit | default "" }}
+                {{- $tag := .tag | default "" }}
+                {{- if $commit }}
+                    <span> · Git: {{ $commit }}{{ if $tag }} ({{ $tag }}){{ end }}</span>
+                {{- end }}
             {{- end }}
         {{- end }}
     {{- end }}
