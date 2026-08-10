@@ -22,7 +22,7 @@
         <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
     </span>
 
-    {{- $gitHashesPath := "git_hashes.json" }}
+    {{- $gitHashesPath := "/git_hashes.json" }}
         {{- with readFile $gitHashesPath }}
             {{- $gitHashes := . | unmarshal }}
             {{- with $gitHashes }}
