@@ -1,0 +1,1 @@
+<a href="{{ .Params.editPost.URL | default site.Params.editPost.URL }}{{ if .Params.editPost.appendFilePath | default ( site.Params.editPost.appendFilePath | default false ) }}/{{ $fileUrlPath }}{{ end }}" rel="noopener noreferrer" target="_blank" aria-label="{{ .Params.editPost.Text | default (site.Params.editPost.Text | default (i18n "edit_post" | default "Edit")) }}">

@@ -1,4 +1,5 @@
 {{- if (.Param "ShowBreadCrumbs") -}}
+<nav aria-label="Breadcrumb">
 <div class="breadcrumbs">
     {{- $url := replace .Parent.Permalink (printf "%s" site.Home.Permalink) "" }}
     {{- $lang_url := strings.TrimPrefix (printf "%s/" .Lang) $url -}}
@@ -16,4 +17,5 @@
 
     {{- end -}}
 </div>
+</nav>
 {{- end -}}
