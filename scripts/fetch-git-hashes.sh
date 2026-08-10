@@ -18,25 +18,26 @@ OUTPUT_FILE="$SITE_ROOT/data/git_hashes.json"
 mkdir -p "$(dirname "$OUTPUT_FILE")"
 
 # Get the current commit hash (short)
-COMMIT_HASH_THEME="$(git -C "$THEME_ROOT" rev-parse HEAD 2>/dev/null || echo "unknown")"
+COMMIT_HASH_THEME="$(git -C "$THEME_ROOT" rev-parse --short=7 HEAD 2>/dev/null || echo "unknown")"
 # Get the latest tag (if any)
 LATEST_TAG_THEME="$(git -C "$THEME_ROOT" describe --tags --abbrev=0 2>/dev/null || echo "")"
 
 # Get the current commit hash (short)
-COMMIT_HASH_SITE="$(git -C "$SITE_ROOT" rev-parse HEAD 2>/dev/null || echo "unknown")"
+COMMIT_HASH_SITE="$(git -C "$SITE_ROOT" rev-parse --short=7 HEAD 2>/dev/null || echo "unknown")"
 # Get the latest tag (if any)
 LATEST_TAG_SITE="$(git -C "$SITE_ROOT" describe --tags --abbrev=0 2>/dev/null || echo "")"
 
 # Write JSON
 cat > "$OUTPUT_FILE" <<EOF
 {
-    'theme':{
-      "commit": "$COMMIT_HASH_THEME",
-      "tag": "$LATEST_TAG_THEME",
-    }, 'site':{
-      "commit": "$COMMIT_HASH_SITE",
-      "tag": "$LATEST_TAG_SITE",
+    "theme": {
+        "commit": "$COMMIT_HASH_THEME",
+        "tag": "$LATEST_TAG_THEME"
     },
+    "site": {
+        "commit": "$COMMIT_HASH_SITE",
+        "tag": "$LATEST_TAG_SITE"
+    }
 }
 EOF
 
