@@ -1,7 +1,7 @@
 {{- with site.Params.homeInfoParams }}
 <article class="first-entry home-info">
     <header class="entry-header">
-        <h1>{{ .Title | markdownify }}</h1>
+        <h1>{{ .Title | default site.Title | markdownify }}</h1>
     </header>
     <div class="entry-content">
         {{ .Content | markdownify }}
@@ -9,5 +9,11 @@
     <footer class="entry-footer">
         {{ partial "social_icons.html" (dict "align" site.Params.homeInfoParams.AlignSocialIconsTo) }}
     </footer>
+</article>
+{{- else }}
+<article class="first-entry home-info">
+    <header class="entry-header">
+        <h1>{{ site.Title }}</h1>
+    </header>
 </article>
 {{- end -}}
