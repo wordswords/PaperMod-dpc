@@ -10,20 +10,9 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # Go up one level to the project root (assuming script is in scripts/)
 PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
 
-# Determine the Hugo site root:
-# - first script argument, if provided
-# - else $HUGO_SITE_ROOT, if set
-# - else the current working directory
-if [[ -n "${1:-}" ]]; then
-    SITE_ROOT="$(cd "$1" && pwd)"
-elif [[ -n "${HUGO_SITE_ROOT:-}" ]]; then
-    SITE_ROOT="$(cd "$HUGO_SITE_ROOT" && pwd)"
-else
-    SITE_ROOT="$(pwd)"
-fi
-
-# Output file path (relative to the Hugo site root)
-OUTPUT_FILE="$SITE_ROOT/data/git_hashes.json"
+# Output file path: site root is two levels above this repository root,
+# so the data directory is ../../data/git_hashes.json from this repo root.
+OUTPUT_FILE="$PROJECT_ROOT/../../data/git_hashes.json"
 
 # Ensure the data directory exists
 mkdir -p "$(dirname "$OUTPUT_FILE")"
