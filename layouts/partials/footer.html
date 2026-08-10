@@ -21,6 +21,18 @@
         which is heavily based on
         <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
     </span>
+
+    {{- $gitHashesPath := "data/git_hashes.json" }}
+    {{- with readFile $gitHashesPath }}
+        {{- $gitHashes := . | unmarshal }}
+        {{- with $gitHashes }}
+            {{- $commit := .commit | default "" }}
+            {{- $tag := .tag | default "" }}
+            {{- if $commit }}
+                <span> · Git: {{ $commit }}{{ if $tag }} ({{ $tag }}){{ end }}</span>
+            {{- end }}
+        {{- end }}
+    {{- end }}
 </footer>
 {{- end }}
 
