@@ -1,10 +1,9 @@
-{{- with .Site.Data.git_hashes }}
-  <span class="git-hashes">
-    {{- with .commit }}
-      <span class="git-commit">Commit: {{ . }}</span>
-    {{- end }}
-    {{- with .tag }}
-      <span class="git-tag">Tag: {{ . }}</span>
-    {{- end }}
-  </span>
-{{- end }}
+my-site/
+├── content/
+├── layouts/
+├── themes/
+│   └── my-theme/
+│       ├── layouts/
+│       ├── scripts/
+│       └── ...
+└── config.toml
