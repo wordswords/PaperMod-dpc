@@ -23,7 +23,6 @@
     </span>
 
     {{- $gitHashesPath := "git_hashes.json" }}
-    {{- if (fileExists $gitHashesPath) }}
         {{- with readFile $gitHashesPath }}
             {{- $gitHashes := . | unmarshal }}
             {{- with $gitHashes }}
@@ -33,10 +32,9 @@
                     <span> · Git: {{ $commit }}{{ if $tag }} ({{ $tag }}){{ end }}</span>
                 {{- end }}
             {{- end }}
+        {{- else }}
+            <span>Hashes not found.</span>
         {{- end }}
-    {{- else }}
-        <span>Hashes not found.</span>
-    {{- end }}
 </footer>
 {{- end }}
 
