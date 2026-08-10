@@ -1,0 +1,17 @@
+{{- $data := dict }}
+{{- if (fileExists "data/git_hashes.json") }}
+  {{- $data = getJSON "data/git_hashes.json" }}
+{{- end }}
+
+{{- if or (isset $data "commit") (isset $data "tag") }}
+  <span class="git-hashes">
+    {{- if isset $data "commit" }}
+      <span class="git-commit">Commit: {{ $data.commit }}</span>
+    {{- end }}
+    {{- if isset $data "tag" }}
+      {{- if ne $data.tag "" }}
+        <span class="git-tag">Tag: {{ $data.tag }}</span>
+      {{- end }}
+    {{- end }}
+  </span>
+{{- end }}
