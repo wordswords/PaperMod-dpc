@@ -1,5 +1,4 @@
 {{- /* Footer custom content area start */ -}}
-<span id="git-hashes"></span>
 <script>
     const gitHashesElement = document.getElementById('git-hashes');
     if (gitHashesElement) {
@@ -13,13 +12,21 @@
                 const site = data.site;
                 const parts = [];
                 if (theme && theme.commit) {
-                    parts.push('Theme: ' + theme.commit + (theme.tag ? ' (' + theme.tag + ')' : ''));
+                    const themeLink = document.createElement('a');
+                    themeLink.href = 'https://github.com/wordswords/PaperMod-dpc/commit/' + encodeURIComponent(theme.commit);
+                    themeLink.textContent = theme.commit;
+                    themeLink.rel = 'noopener noreferrer';
+                    themeLink.target = '_blank';
+                    const themePart = document.createDocumentFragment();
+                    themePart.append('Theme: ', themeLink, theme.tag ? ' (' + theme.tag + ')' : '');
+                    parts.push(themePart);
                 }
                 if (site && site.commit) {
                     parts.push('Site: ' + site.commit + (site.tag ? ' (' + site.tag + ')' : ''));
                 }
                 if (parts.length > 0) {
-                    gitHashesElement.textContent = ' · ' + parts.join(' · ');
+                    gitHashesElement.replaceChildren();
+                    parts.forEach(part => gitHashesElement.append(' · ', part));
                 }
             })
             .catch(() => {
