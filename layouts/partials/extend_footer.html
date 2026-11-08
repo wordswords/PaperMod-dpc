@@ -44,11 +44,14 @@
                 }
                 if (parts.length > 0) {
                     gitHashesElement.replaceChildren();
-                    parts.forEach(part => gitHashesElement.append(' · ', part));
+                    parts.forEach((part, index) => {
+                        if (index > 0) gitHashesElement.append(' · ');
+                        gitHashesElement.append(part);
+                    });
                 }
             })
             .catch(() => {
-                gitHashesElement.textContent = ' · Hashes not found.';
+                gitHashesElement.textContent = 'Hashes not found.';
             });
     }
 </script>

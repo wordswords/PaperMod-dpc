@@ -1,5 +1,6 @@
 {{- if not (.Param "hideFooter") }}
 <footer class="footer">
+    <div class="footer-credits">
     {{- if not site.Params.footer.hideCopyright }}
         {{- if site.Copyright }}
         <span>{{ site.Copyright | markdownify }}</span>
@@ -22,8 +23,12 @@
         <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
     </span>
 
-    <span id="git-hashes"></span>
-    <span id="accessibility-check"></span>
+    </div>
+    <div id="git-hashes"></div>
+    <div id="accessibility-check"></div>
+    <div class="footer-icons">
+        <img src="{{ "images/vimtransparent.png" | relURL }}" alt="Vim" width="32" height="32" loading="lazy">
+    </div>
 </footer>
 {{- end }}
 
@@ -45,7 +50,7 @@
         link.textContent = 'Accessibility check';
         link.rel = 'noopener noreferrer';
         link.target = '_blank';
-        accessibilityCheck.append(' · ', link);
+        accessibilityCheck.append(link);
     }
 
     let menu = document.getElementById('menu')

@@ -12,6 +12,20 @@
     line-height: 24px;
 }
 
+.footer-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.footer-icons img {
+    display: block;
+    width: 32px;
+    height: 32px;
+}
+
 .footer span {
     margin-inline-start: 1px;
     margin-inline-end: 1px;
