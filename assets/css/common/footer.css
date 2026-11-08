@@ -14,15 +14,32 @@
 
 .footer-icons {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: 8px;
-    margin-top: 8px;
+    gap: 16px;
+    margin-top: 12px;
+}
+
+.footer .footer-icons a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 44px;
+    min-height: 44px;
+    padding: 6px;
+    border: 0;
+    border-radius: 4px;
+}
+
+.footer .footer-icons a:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
 }
 
 .footer-icons img {
     display: block;
-    width: 32px;
+    width: auto;
     height: 32px;
 }
 
@@ -32,7 +49,7 @@
 }
 
 .footer span:last-child {
-    white-space: nowrap;
+    white-space: normal;
 }
 
 .footer a {
