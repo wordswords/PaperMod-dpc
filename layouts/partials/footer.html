@@ -23,6 +23,7 @@
     </span>
 
     <span id="git-hashes"></span>
+    <span id="accessibility-check"></span>
 </footer>
 {{- end }}
 
@@ -37,6 +38,16 @@
 {{- partial "extend_footer.html" . }}
 
 <script>
+    const accessibilityCheck = document.getElementById('accessibility-check');
+    if (accessibilityCheck) {
+        const link = document.createElement('a');
+        link.href = 'https://wave.webaim.org/report#/' + window.location.href;
+        link.textContent = 'Accessibility check';
+        link.rel = 'noopener noreferrer';
+        link.target = '_blank';
+        accessibilityCheck.append(' · ', link);
+    }
+
     let menu = document.getElementById('menu')
     if (menu) {
         menu.scrollLeft = localStorage.getItem("menu-scroll-position");
